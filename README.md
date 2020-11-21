@@ -14,7 +14,7 @@ Installing Minecontrol is very easy. Follow the steps below to install it.
 
 `tsc` and `typescript` (v4.0 or later) - https://typescriptlang.org
 
-## Installation
+## The "git" way
 We assume that you installed `node`, `git` and `typescript` correctly.
 
 **1.** Open a terminal of your choice (e. g. `cmd` if you're on Windows, or any terminal if you're on Linux / macOS)
@@ -26,6 +26,17 @@ We assume that you installed `node`, `git` and `typescript` correctly.
 **4.** Install all the packages by typing `npm install` into your terminal.
 
 **3.** If everything worked, you should be able to type `npm run start` to build the project and run it.
+
+## The "npm" way
+We assume that you installed `node`, `git` and `typescript` correctly.
+
+**1.** Open a terminal of your choice *as an administrator / sudo* (e. g. `cmd` if you're on Windows, or any terminal if you're on Linux / macOS)
+
+**2.** Install the `minecontrol` package by typing `npm install minecontrol -g`.
+
+**3.** When you installed it, type `minecontrol` in your terminal.
+
+**4.** If everything worked, you should now be able to use **Minecontrol**.
 
 # Can I get banned on servers using this?
 Server owners or anticheats **can't** detect bots, unless you use a spammer or any other obvious botting tool.
