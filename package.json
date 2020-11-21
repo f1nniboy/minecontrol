@@ -1,0 +1,45 @@
+{
+    "name": "minecontrol",
+    "version": "1.0.0",
+    "description": "A Minecraft terminal client that can connect to servers - cracked or premium.",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "tsc",
+        "run": "node build/index.js",
+        "start": "npm run build && npm run run"
+    },
+    "keywords": [
+        "terminal-client",
+        "minecraft",
+        "minecraft-bot",
+        "minecraft-terminak",
+        "minecraft-client",
+        "mineflayer"
+    ],
+    "author": "f1nniboy",
+    "license": "MIT",
+    "dependencies": {
+        "@types/moment": "^2.13.0",
+        "blessed": "^0.1.81",
+        "chalk": "^2.4.2",
+        "clipboardy": "^2.3.0",
+        "mineflayer": "^2.34.0",
+        "mineflayer-pathfinder": "^1.0.12",
+        "mineflayer-pvp": "^1.0.2",
+        "mineflayer-tps": "^1.0.1",
+        "moment": "^2.29.1"
+    },
+    "devDependencies": {
+        "@types/blessed": "^0.1.12",
+        "@types/node": "^12.7.3",
+        "typescript": "^4.1.2"
+    },
+    "files": [
+        "build",
+        "src/themes",
+        "src/plugins"
+    ],
+    "bin": {
+        "minecontrol": "build/index.js"
+    }
+}
