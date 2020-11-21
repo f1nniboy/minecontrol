@@ -49,7 +49,9 @@ exports.defaultAppOptions = {
             style: {
                 fg: stateConstants_1.defaultState.themeData.sidebar.foregroundColor,
                 bg: stateConstants_1.defaultState.themeData.sidebar.backgroundColor
-            }
+            },
+            draggable: true,
+            border: "line"
         }),
         input: blessed_1.default.textbox({
             style: {

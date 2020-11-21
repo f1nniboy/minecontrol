@@ -52,7 +52,9 @@ export const defaultAppOptions: IAppOptions = {
             style: {
                 fg: defaultState.themeData.sidebar.foregroundColor,
                 bg: defaultState.themeData.sidebar.backgroundColor
-            }
+            },
+            draggable: true,
+            border: "line"
         }),
 
         input: blessed.textbox({

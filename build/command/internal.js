@@ -21,9 +21,9 @@ function setupInternalCommands(app) {
         description: "Connect to a server.",
         onExecution(args) {
             if (args[0])
-                app.connect(args[0], args[1] ? parseInt(args[1]) : 25565, args[1]);
+                app.connect(args[0], args[1] ? parseInt(args[1]) : 25565, args[2]);
             else
-                app.message.system("Please specify a valid address and optionally a port and version to connect.");
+                app.message.system("Please specify a valid address and optionally a port to connect.");
         }
     });
     app.commands.set("disconnect", {
@@ -167,6 +167,15 @@ function setupInternalCommands(app) {
         async onExecution() {
             await app.plugin.reloadAll();
             app.message.system("Reloaded plugins.");
+        }
+    });
+    app.commands.set("packages", {
+        description: "View the installed packages. Who doesn't want to know what packages are installed?",
+        onExecution() {
+            const packageJSON = require("../../package.json");
+            for (let packageName in packageJSON.dependencies) {
+                app.message.system(`{bold}${packageName}{/bold} - {bold}${packageJSON.dependencies[packageName]}{/bold}`);
+            }
         }
     });
 }

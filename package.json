@@ -1,6 +1,6 @@
 {
     "name": "minecontrol",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A Minecraft terminal client that can connect to servers - cracked or premium.",
     "main": "build/index.js",
     "scripts": {
@@ -12,7 +12,7 @@
         "terminal-client",
         "minecraft",
         "minecraft-bot",
-        "minecraft-terminak",
+        "minecraft-terminal",
         "minecraft-client",
         "mineflayer"
     ],
@@ -23,15 +23,10 @@
         "blessed": "^0.1.81",
         "chalk": "^2.4.2",
         "clipboardy": "^2.3.0",
-        "minecraft-protocol-forge": "^1.0.0",
         "mineflayer": "^2.34.0",
         "mineflayer-pathfinder": "^1.0.12",
         "mineflayer-pvp": "^1.0.2",
-        "mineflayer-tps": "^1.0.1",
-        "mineflayer-web-inventory": "^1.2.0",
-        "moment": "^2.29.1",
-        "proxy-agent": "^4.0.0",
-        "socks5-client": "^1.2.8"
+        "moment": "^2.29.1"
     },
     "devDependencies": {
         "@types/blessed": "^0.1.12",

@@ -213,7 +213,7 @@ export default class App extends EventEmitter {
                 },
 
                 content: playerName,
-                width: "100%-2",
+                width: "100%-4",
                 height: "shrink",
                 top: i,
                 left: "0%",

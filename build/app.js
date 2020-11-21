@@ -56,6 +56,8 @@ class App extends events_2.EventEmitter {
         this.updatePlayers(true);
     }
     async disconnect(reconnect = false) {
+        if (!this.client._client.socket.destroyed)
+            return;
         clearInterval(this.tickInterval);
         // Hacky way to get the server's IP and port.
         if (reconnect)
@@ -154,7 +156,7 @@ class App extends events_2.EventEmitter {
                     }
                 },
                 content: playerName,
-                width: "100%-2",
+                width: "100%-4",
                 height: "shrink",
                 top: i,
                 left: "0%",

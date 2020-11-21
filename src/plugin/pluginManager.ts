@@ -79,9 +79,13 @@ export default class PluginManager {
         let plugin = require(entryPath);
         plugin = plugin[Object.keys(plugin)[0]];
 
-        plugin.loaded = true;
-        plugin.onEnable(this.app);
-        this.plugins.set(plugin.name.toLowerCase(), plugin);
+        try {
+            plugin.loaded = true;
+            plugin.onEnable(this.app);
+            this.plugins.set(plugin.name.toLowerCase(), plugin);
+        } catch (error) {
+
+        }
 
         this.app.message.system(`Loaded the plugin '{bold}${plugin.name}{/bold}' version '{bold}${plugin.version}{/bold}' made by '{bold}${plugin.author}{/bold}'.`);
     }

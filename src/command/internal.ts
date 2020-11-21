@@ -16,8 +16,8 @@ export default function setupInternalCommands(app: App): void {
     app.commands.set("connect", {
         description: "Connect to a server.",
         onExecution(args: string[]): void {
-            if(args[0]) app.connect(args[0], args[1] ? parseInt(args[1]) : 25565, args[1]);
-            else app.message.system("Please specify a valid address and optionally a port and version to connect.");
+            if(args[0]) app.connect(args[0], args[1] ? parseInt(args[1]) : 25565, args[2]);
+            else app.message.system("Please specify a valid address and optionally a port to connect.");
         }
     });
 
@@ -64,11 +64,8 @@ export default function setupInternalCommands(app: App): void {
     app.commands.set("theme", {
         description: "Find out the current theme or set it.",
         onExecution(args: string[]): void {
-            if (!args[0]) {
-                app.message.system(`The current theme is '{bold}${app.state.get().theme}{/bold}'.`)
-            } else {
-                app.loadTheme(args[0]);
-            }
+            if (!args[0]) app.message.system(`The current theme is '{bold}${app.state.get().theme}{/bold}'.`)
+            else app.loadTheme(args[0]);
         }
     });
 
@@ -176,13 +173,24 @@ export default function setupInternalCommands(app: App): void {
         onExecution(args: string[]): void {
             app.plugin.unloadPlugin(args[0]);
         }
-    })
+    });
 
     app.commands.set("reload", {
         description: "Reload all command.",
         async onExecution(): Promise<void> {
             await app.plugin.reloadAll();
             app.message.system("Reloaded plugins.");
+        }
+    });
+
+    app.commands.set("packages", {
+        description: "View the installed packages. Who doesn't want to know what packages are installed?",
+        onExecution(): void {
+            const packageJSON = require("../../package.json");
+
+            for(let packageName in packageJSON.dependencies) {
+                app.message.system(`{bold}${packageName}{/bold} - {bold}${packageJSON.dependencies[packageName]}{/bold}`);
+            }
         }
     })
 }
