@@ -1,6 +1,6 @@
 {
     "name": "minecontrol",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A Minecraft terminal client that can connect to servers - cracked or premium.",
     "main": "build/index.js",
     "scripts": {

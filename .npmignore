@@ -121,4 +121,5 @@ dist
 src/
 state.json
 .github
+.idea
 
