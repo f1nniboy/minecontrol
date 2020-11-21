@@ -2,6 +2,7 @@ import { EventEmitter } from "events";
 import fs from "fs";
 import { defaultState } from "./stateConstants";
 import App from "../app";
+import * as path from "path";
 
 export interface IStateOptions {
     readonly stateFilePath: string;
@@ -44,7 +45,7 @@ export default class State extends EventEmitter {
         return Object.assign({}, this.state);
     }
 
-    /**
+    /*
      * Change the application's state, triggering
      * a state change event.
      */
@@ -65,14 +66,14 @@ export default class State extends EventEmitter {
         return this;
     }
 
-    /**
+    /*
      * Load and apply previously saved state from the
      * file system.
      */
     public async sync(): Promise<boolean> {
         if (fs.existsSync(this.options.stateFilePath)) {
             return new Promise<boolean>((resolve) => {
-                fs.readFile(this.options.stateFilePath, (error: Error, data: Buffer) => {
+                fs.readFile(path.join(__dirname, "..", this.options.stateFilePath), (error: Error, data: Buffer) => {
                     if (error) {
                         this.app.message.system(`There was an error while reading the application state: {bold}${error.message}{/bold}`);
 
@@ -100,14 +101,10 @@ export default class State extends EventEmitter {
         const data: string = JSON.stringify({
             ...this.state,
             selectedPlayer: undefined,
-            channel: undefined,
-            lastMessage: undefined,
-            typingTimeout: undefined,
-            autoHideHeaderTimeout: undefined,
             themeData: undefined
         });
 
-        fs.writeFileSync(this.options.stateFilePath, data);
+        fs.writeFileSync(path.join(__dirname, "..", this.options.stateFilePath), data);
         if(notify) this.app.message.system(`Application state saved.`);
     }
 
@@ -117,13 +114,10 @@ export default class State extends EventEmitter {
         const data: string = JSON.stringify({
             ...this.state,
             selectedPlayer: undefined,
-            lastMessage: undefined,
-            typingTimeout: undefined,
-            autoHideHeaderTimeout: undefined,
             themeData: undefined
         });
 
-        fs.writeFileSync(this.options.stateFilePath, data);
+        fs.writeFileSync(path.join(__dirname, "..", this.options.stateFilePath), data);
         if(notify) this.app.message.system(`Application state saved.`);
 
         return this;

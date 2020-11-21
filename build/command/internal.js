@@ -66,12 +66,10 @@ function setupInternalCommands(app) {
     app.commands.set("theme", {
         description: "Find out the current theme or set it.",
         onExecution(args) {
-            if (!args[0]) {
+            if (!args[0])
                 app.message.system(`The current theme is '{bold}${app.state.get().theme}{/bold}'.`);
-            }
-            else {
+            else
                 app.loadTheme(args[0]);
-            }
         }
     });
     app.commands.set("themes", {
