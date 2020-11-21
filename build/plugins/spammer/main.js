@@ -31,7 +31,7 @@ exports.SpammerPlugin = {
             app.client.chat(spammerText.replace("{random}", crypto_1.default.randomBytes(2).toString("hex")));
         }
     },
-    // Gets called when the plugin gets enabled
+    // Gets called when the plugin gets disabled
     onDisable(app) {
         spammerActivated = false;
     },

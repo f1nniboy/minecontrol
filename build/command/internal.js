@@ -21,9 +21,9 @@ function setupInternalCommands(app) {
         description: "Connect to a server.",
         onExecution(args) {
             if (args[0])
-                app.connect(args[0], args[1] ? parseInt(args[1]) : 25565);
+                app.connect(args[0], args[1] ? parseInt(args[1]) : 25565, args[1]);
             else
-                app.message.system("Please specify a valid address and optionally a port to connect.");
+                app.message.system("Please specify a valid address and optionally a port and version to connect.");
         }
     });
     app.commands.set("disconnect", {

@@ -78,7 +78,7 @@ exports.PVPPlugin = {
     // Gets called when a tick happens
     onUpdate(app) {
     },
-    // Gets called when the plugin gets enabled
+    // Gets called when the plugin gets disabled
     onDisable(app) {
     },
 };

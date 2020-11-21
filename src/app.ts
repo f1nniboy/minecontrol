@@ -1,5 +1,5 @@
 import { Bot, createBot } from "mineflayer";
-import blessed, {Widgets} from "blessed";
+import blessed, { Widgets } from "blessed";
 import fs from "fs";
 import path from "path";
 import { defaultAppOptions } from "./constant";
@@ -85,6 +85,8 @@ export default class App extends EventEmitter {
     }
 
     public async disconnect(reconnect: boolean = false): Promise<void> {
+        if(!this.client._client.socket.destroyed) return;
+
         clearInterval(this.tickInterval);
 
         // Hacky way to get the server's IP and port.
@@ -260,7 +262,7 @@ export default class App extends EventEmitter {
         if (name === defaultState.theme) {
             this.setTheme(defaultState.theme, defaultState.themeData);
         } else if (fs.existsSync(themePath)) {
-            this.message.system(`Loading theme '{bold}${name}{/bold}'...`);
+            this.message.system(`Loading theme '{bold}${name}{/bold}' ...`);
 
             const theme: any = fs.readFileSync(themePath).toString();
             try {
@@ -331,7 +333,7 @@ export default class App extends EventEmitter {
         return this;
     }
 
-    public connect(host: string, port: number): this {
+    public connect(host: string, port: number, version?: string): this {
         this.client = createBot({
             host: host,
             port: port,
@@ -339,7 +341,7 @@ export default class App extends EventEmitter {
             username: this.state.get().username,
             password: this.state.get().password,
 
-            version: "1.8.8"
+            version: version ? version : undefined
         });
 
         // Register all needed Minecraft events.

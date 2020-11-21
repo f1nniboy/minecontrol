@@ -100,7 +100,7 @@ export const PVPPlugin: IPlugin = {
 
     },
 
-    // Gets called when the plugin gets enabled
+    // Gets called when the plugin gets disabled
     onDisable(app: App) {
 
     },

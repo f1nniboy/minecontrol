@@ -32,7 +32,7 @@ export const SpammerPlugin: IPlugin = {
         }
     },
 
-    // Gets called when the plugin gets enabled
+    // Gets called when the plugin gets disabled
     onDisable(app: App) {
         spammerActivated = false;
     },

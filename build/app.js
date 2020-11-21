@@ -193,7 +193,7 @@ class App extends events_2.EventEmitter {
             this.setTheme(stateConstants_1.defaultState.theme, stateConstants_1.defaultState.themeData);
         }
         else if (fs_1.default.existsSync(themePath)) {
-            this.message.system(`Loading theme '{bold}${name}{/bold}'...`);
+            this.message.system(`Loading theme '{bold}${name}{/bold}' ...`);
             const theme = fs_1.default.readFileSync(themePath).toString();
             try {
                 const parsedTheme = JSON.parse(theme);
@@ -250,13 +250,13 @@ class App extends events_2.EventEmitter {
         this.message.system(`You can now connect using '{bold}${this.options.commandPrefix}connect <Server-IP> <Port>{/bold}'.`);
         return this;
     }
-    connect(host, port) {
+    connect(host, port, version) {
         this.client = mineflayer_1.createBot({
             host: host,
             port: port,
             username: this.state.get().username,
             password: this.state.get().password,
-            version: "1.8.8"
+            version: version ? version : undefined
         });
         // Register all needed Minecraft events.
         this.client.on("login", () => {

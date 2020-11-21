@@ -7,7 +7,8 @@ export type IPlugin = {
     readonly author?: string;
     loaded: boolean;
 
-    onEnable(app: App): void;
-    onUpdate?(app: App): void;
-    onDisable(app: App): void;
+    onEarlyEnable?(app: App): void // Gets called when the bot gets created using "createBot" - not working yet.
+    onEnable(app: App): void; // Gets called when the world loads.
+    onUpdate?(app: App): void; // Gets called every time a tick happens, which can be changed in the config.
+    onDisable(app: App): void; // Gets called when the bot gets disconnected, the plugins unload or the program exists.
 }

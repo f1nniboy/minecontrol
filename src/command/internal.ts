@@ -16,8 +16,8 @@ export default function setupInternalCommands(app: App): void {
     app.commands.set("connect", {
         description: "Connect to a server.",
         onExecution(args: string[]): void {
-            if(args[0]) app.connect(args[0], args[1] ? parseInt(args[1]) : 25565);
-            else app.message.system("Please specify a valid address and optionally a port to connect.");
+            if(args[0]) app.connect(args[0], args[1] ? parseInt(args[1]) : 25565, args[1]);
+            else app.message.system("Please specify a valid address and optionally a port and version to connect.");
         }
     });
 
