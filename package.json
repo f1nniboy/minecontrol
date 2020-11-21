@@ -1,8 +1,12 @@
 {
     "name": "minecontrol",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A Minecraft terminal client that can connect to servers - cracked or premium.",
     "main": "build/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/f1nniboy/minecontrol"
+    },
     "scripts": {
         "build": "tsc",
         "run": "node build/index.js",
