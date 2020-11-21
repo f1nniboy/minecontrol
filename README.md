@@ -28,7 +28,7 @@ We assume that you installed `node`, `git` and `typescript` correctly.
 **3.** If everything worked, you should be able to type `npm run start` to build the project and run it.
 
 ## The "npm" way
-We assume that you installed `node`, `git` and `typescript` correctly.
+We assume that you installed `node` and `typescript` correctly.
 
 **1.** Open a terminal of your choice *as an administrator / sudo* (e. g. `cmd` if you're on Windows, or any terminal if you're on Linux / macOS)
 
