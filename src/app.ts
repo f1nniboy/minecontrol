@@ -341,6 +341,7 @@ export default class App extends EventEmitter {
             username: this.state.get().username,
             password: this.state.get().password,
 
+
             version: version ? version : undefined
         });
 

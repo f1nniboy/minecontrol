@@ -41,7 +41,7 @@ export default function setupEvents(app: App): void {
             const args: string[] = input.substr(app.options.commandPrefix.length).split(" ");
             const base: string = args[0];
 
-            if (app.commands.has(base)) {
+            if (app.commands.has(base.toLowerCase())) {
                 args.splice(0, 1);
 
                 try {

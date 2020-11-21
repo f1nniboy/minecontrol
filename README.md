@@ -12,7 +12,7 @@ Installing Minecontrol is very easy. Follow the steps below to install it.
 
 `node` and `npm` (v10.0.0 or later) - https://nodejs.org
 
-`tsc` and `typescript` (v4.0 or later) - https://typescriptlang.org
+`tsc` and `typescript` (v4.0 or later) - https://www.typescriptlang.org/
 
 ## The "git" way
 We assume that you installed `node`, `git` and `typescript` correctly.
