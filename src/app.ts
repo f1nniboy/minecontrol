@@ -85,7 +85,7 @@ export default class App extends EventEmitter {
     }
 
     public async disconnect(reconnect: boolean = false): Promise<void> {
-        if(!this.client._client.socket.destroyed) return;
+        if(this.client._client.socket.destroyed) return;
 
         clearInterval(this.tickInterval);
 

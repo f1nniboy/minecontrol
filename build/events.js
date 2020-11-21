@@ -37,7 +37,7 @@ function setupEvents(app) {
         else if (input.startsWith(app.options.commandPrefix)) {
             const args = input.substr(app.options.commandPrefix.length).split(" ");
             const base = args[0];
-            if (app.commands.has(base)) {
+            if (app.commands.has(base.toLowerCase())) {
                 args.splice(0, 1);
                 try {
                     app.commands.get(base).onExecution(args);
