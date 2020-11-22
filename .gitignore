@@ -122,3 +122,6 @@ state.json
 .idea
 build/state.json
 src/state.json
+
+# No npm ignore file
+.npmignore
