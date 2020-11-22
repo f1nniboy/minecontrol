@@ -268,7 +268,7 @@ export default class App extends EventEmitter {
             try {
                 const parsedTheme: any = JSON.parse(theme);
 
-                if(!parsedTheme || !parsedTheme.messages || !parsedTheme.sidebar || !parsedTheme.input || !parsedTheme.header) {
+                if(!parsedTheme || !parsedTheme.messages || !parsedTheme.messages.scrollbar || !parsedTheme.sidebar || !parsedTheme.input || !parsedTheme.header) {
                     this.message.system(`The theme '{bold}${name}{/bold}' is not valid.`);
                     return this;
                 }
@@ -296,24 +296,32 @@ export default class App extends EventEmitter {
             themeData: data
         });
 
-        // Messages
-        this.options.nodes.messages.style.fg = this.state.get().themeData.messages.foregroundColor;
-        this.options.nodes.messages.style.bg = this.state.get().themeData.messages.backgroundColor;
+        try {
+            // Messages
+            this.options.nodes.messages.style.fg = this.state.get().themeData.messages.foregroundColor;
+            this.options.nodes.messages.style.bg = this.state.get().themeData.messages.backgroundColor;
 
-        // Input
-        this.options.nodes.input.style.fg = this.state.get().themeData.input.foregroundColor;
-        this.options.nodes.input.style.bg = this.state.get().themeData.input.backgroundColor;
+            // Scrollbar
+            this.options.nodes.messages.options.scrollbar.track.bg = this.state.get().themeData.messages.scrollbar.bg;
+            this.options.nodes.messages.options.scrollbar.track.fg = this.state.get().themeData.messages.scrollbar.fg;
 
-        // Players
-        this.options.nodes.players.style.fg = this.state.get().themeData.sidebar.foregroundColor;
-        this.options.nodes.players.style.bg = this.state.get().themeData.sidebar.backgroundColor;
+            // Input
+            this.options.nodes.input.style.fg = this.state.get().themeData.input.foregroundColor;
+            this.options.nodes.input.style.bg = this.state.get().themeData.input.backgroundColor;
 
-        // Header
-        this.options.nodes.header.style.fg = this.state.get().themeData.header.foregroundColor;
-        this.options.nodes.header.style.bg = this.state.get().themeData.header.backgroundColor;
+            // Players
+            this.options.nodes.players.style.fg = this.state.get().themeData.sidebar.foregroundColor;
+            this.options.nodes.players.style.bg = this.state.get().themeData.sidebar.backgroundColor;
 
-        this.updatePlayers();
-        this.message.system(`Applied theme '{bold}${name}{/bold}'.`);
+            // Header
+            this.options.nodes.header.style.fg = this.state.get().themeData.header.foregroundColor;
+            this.options.nodes.header.style.bg = this.state.get().themeData.header.backgroundColor;
+
+            this.render(true, true);
+            this.message.system(`Applied theme '{bold}${name}{/bold}'.`);
+        } catch (error) {
+            this.message.system(`Something went wrong while trying to apply the theme: {bold}${error.message}{/bold}`);
+        }
 
         return this;
     }

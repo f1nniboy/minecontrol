@@ -1,0 +1,27 @@
+{
+  "messages": {
+    "foregroundColor": "#000000",
+    "backgroundColor": "#878484",
+    "scrollbar": {
+      "foregroundColor": "000000",
+      "backgroundColor": "#FFFFFF"
+    }
+  },
+
+  "sidebar": {
+    "foregroundColor": "#000000",
+    "backgroundColor": "#FFFFFF",
+    "foregroundColorHover": "#FFF",
+    "backgroundColorHover": "black"
+  },
+
+  "input": {
+    "foregroundColor": "#000000",
+    "backgroundColor": "#C1C1C1"
+  },
+
+  "header": {
+    "foregroundColor": "#000000",
+    "backgroundColor": "#FFFFFF"
+  }
+}

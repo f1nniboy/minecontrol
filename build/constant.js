@@ -35,8 +35,19 @@ exports.defaultAppOptions = {
                 bg: stateConstants_1.defaultState.themeData.messages.backgroundColor
             },
             scrollable: true,
+            mouse: true,
             tags: true,
-            padding: 1
+            padding: 1,
+            scrollbar: {
+                ch: " ",
+                track: {
+                    bg: stateConstants_1.defaultState.themeData.input.foregroundColor,
+                    fg: stateConstants_1.defaultState.themeData.input.back
+                },
+                style: {
+                    inverse: true
+                }
+            },
         }),
         players: blessed_1.default.box({
             top: "0%",

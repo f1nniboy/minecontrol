@@ -61,14 +61,17 @@ class PluginManager {
             this.app.message.system(`The plugin '{bold}${pluginName}{/bold}' is already loaded.`);
             return this;
         }
-        let plugin = require(entryPath);
-        plugin = plugin[Object.keys(plugin)[0]];
+        let plugin;
         try {
+            plugin = require(entryPath);
+            plugin = plugin[Object.keys(plugin)[0]];
             plugin.loaded = true;
             plugin.onEnable(this.app);
             this.plugins.set(plugin.name.toLowerCase(), plugin);
         }
         catch (error) {
+            this.app.message.system(`An error occurred while trying to enable the plugin '{bold}${pluginName}{/bold}': {bold}${error.message}{/bold}`);
+            return;
         }
         this.app.message.system(`Loaded the plugin '{bold}${plugin.name}{/bold}' version '{bold}${plugin.version}{/bold}' made by '{bold}${plugin.author}{/bold}'.`);
     }
@@ -83,9 +86,15 @@ class PluginManager {
             return this;
         }
         let plugin = this.plugins.get(pluginName.toLowerCase());
-        plugin.loaded = false;
-        plugin.onDisable(this.app);
-        this.plugins.delete(pluginName.toLowerCase());
+        try {
+            plugin.loaded = false;
+            plugin.onDisable(this.app);
+            this.plugins.delete(pluginName.toLowerCase());
+        }
+        catch (error) {
+            this.app.message.system(`An error occurred while trying to disable the plugin '{bold}${pluginName}{/bold}': {bold}${error.message}{/bold}`);
+            return;
+        }
         this.app.message.system(`Unloaded the plugin '{bold}${pluginName}{/bold}'.`);
     }
 }

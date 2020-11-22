@@ -12,7 +12,11 @@ export const defaultState: IState = {
     themeData: {
         messages: {
             foregroundColor: "white",
-            backgroundColor: "gray"
+            backgroundColor: "gray",
+            "scrollbar": {
+                foregroundColor: "gray",
+                backgroundColor: "white"
+            }
         },
 
         sidebar: {

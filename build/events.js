@@ -43,7 +43,7 @@ function setupEvents(app) {
                     app.commands.get(base).onExecution(args);
                 }
                 catch (error) {
-                    app.message.system(`An error occurred while running the command '{bold}${base}{/bold}': ${error.message}`);
+                    app.message.system(`An error occurred while executing the command '{bold}${base}{/bold}': {bold}${error.message}{/bold}`);
                 }
             }
             else {

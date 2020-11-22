@@ -15,7 +15,11 @@ exports.defaultState = {
     themeData: {
         messages: {
             foregroundColor: "white",
-            backgroundColor: "gray"
+            backgroundColor: "gray",
+            "scrollbar": {
+                foregroundColor: "gray",
+                backgroundColor: "white"
+            }
         },
         sidebar: {
             foregroundColor: "white",

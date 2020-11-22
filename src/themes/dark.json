@@ -1,19 +1,23 @@
 {
     "messages": {
-        "foregroundColor": "#fff",
-        "backgroundColor": "#000"
+        "foregroundColor": "#f73d53",
+        "backgroundColor": "#2b2828",
+        "scrollbar": {
+            "foregroundColor": "white",
+            "backgroundColor": "#444"
+        }
     },
 
     "sidebar": {
-        "foregroundColor": "#000",
-        "backgroundColor": "white",
-        "foregroundColorHover": "#fff",
-        "backgroundColorHover": "#333"
+        "foregroundColor": "white",
+        "backgroundColor": "#191919",
+        "foregroundColorHover": "#FFF",
+        "backgroundColorHover": "black"
     },
 
     "input": {
-        "foregroundColor": "#fff",
-        "backgroundColor": "#301e20"
+        "foregroundColor": "white",
+        "backgroundColor": "#444"
     },
 
     "header": {

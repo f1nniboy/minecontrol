@@ -1,7 +1,11 @@
 {
     "messages": {
         "foregroundColor": "#f73d53",
-        "backgroundColor": "#2b2828"
+        "backgroundColor": "#2b2828",
+        "scrollbar": {
+            "foregroundColor": "#ff4242",
+            "backgroundColor": "#444"
+        }
     },
 
     "sidebar": {

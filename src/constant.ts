@@ -36,8 +36,19 @@ export const defaultAppOptions: IAppOptions = {
             },
 
             scrollable: true,
+            mouse: true,
             tags: true,
-            padding: 1
+            padding: 1,
+            scrollbar: {
+                ch: " ",
+                track: {
+                    bg: defaultState.themeData.input.foregroundColor,
+                    fg: defaultState.themeData.input.back
+                },
+                style: {
+                    inverse: true
+                }
+            },
         }),
 
         players: blessed.box({
