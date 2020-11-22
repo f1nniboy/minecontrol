@@ -175,7 +175,7 @@ export default class App extends EventEmitter {
 
         clearInterval(this.tickInterval);
         await this.plugin.unloadAll();
-        this.state.saveSync();
+        await this.state.saveSync();
 
         process.exit(exitCode);
     }

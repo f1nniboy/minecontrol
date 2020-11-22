@@ -2,7 +2,7 @@ import App from "./app";
 import clipboardy from "clipboardy";
 
 export default function setupEvents(app: App): void {
-    // Screen.
+    // Screen
     app.options.screen.key("C-c", async () => {
         await app.shutdown();
     });
