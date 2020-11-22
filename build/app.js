@@ -206,7 +206,7 @@ class App extends events_2.EventEmitter {
                 this.setTheme(name, parsedTheme);
             }
             catch (error) {
-                this.message.system(`The theme '{bold}${name}{/bold}' is not valid.`);
+                this.message.system(`The theme '{bold}${name}{/bold}' is not valid: {bold}${error.message}{/bold}`);
                 return this;
             }
         }
@@ -288,8 +288,15 @@ class App extends events_2.EventEmitter {
         this.client.on("kicked", this.disconnect.bind(this));
         this.tickInterval = timers_1.setInterval(() => {
             this.plugin.plugins.forEach((plugin) => {
-                if (plugin.onUpdate && plugin.loaded)
-                    plugin.onUpdate(this);
+                if (plugin.onUpdate && plugin.loaded) {
+                    try {
+                        plugin.onUpdate(this);
+                    }
+                    catch (error) {
+                        this.message.system(`An error occurred while trying to perform a tick for the plugin '{bold}${plugin.name}{/bold}': {bold}${error.message}{/bold}`);
+                        return;
+                    }
+                }
             });
         }, 1000 / this.state.get().ticksPerSecond);
         return this;

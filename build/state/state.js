@@ -62,7 +62,7 @@ class State extends events_1.EventEmitter {
      * file system.
      */
     async sync() {
-        if (fs_1.default.existsSync(this.options.stateFilePath)) {
+        if (fs_1.default.existsSync(path.join(__dirname, "..", this.options.stateFilePath))) {
             return new Promise((resolve) => {
                 fs_1.default.readFile(path.join(__dirname, "..", this.options.stateFilePath), (error, data) => {
                     if (error) {

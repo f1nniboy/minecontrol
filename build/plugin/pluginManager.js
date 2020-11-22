@@ -49,6 +49,10 @@ class PluginManager {
             this.app.message.system("Please specify a plugin to load.");
             return this;
         }
+        if (!this.app.client) {
+            this.app.message.system("The bot must be connected to a server to load a plugin.");
+            return this;
+        }
         const pluginPath = path_1.default.join(__dirname, "..", this.app.state.get().pluginsPath);
         const entryPath = path_1.default.join(path_1.default.join(pluginPath, pluginName), "main.js");
         // Check if the plugin exists.

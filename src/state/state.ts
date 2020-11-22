@@ -70,7 +70,7 @@ export default class State extends EventEmitter {
      * file system.
      */
     public async sync(): Promise<boolean> {
-        if (fs.existsSync(this.options.stateFilePath)) {
+        if (fs.existsSync(path.join(__dirname, "..", this.options.stateFilePath))) {
             return new Promise<boolean>((resolve) => {
                 fs.readFile(path.join(__dirname, "..", this.options.stateFilePath), (error: Error, data: Buffer) => {
                     if (error) {

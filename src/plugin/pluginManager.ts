@@ -61,6 +61,11 @@ export default class PluginManager {
             return this;
         }
 
+        if(!this.app.client) {
+            this.app.message.system("The bot must be connected to a server to load a plugin.");
+            return this;
+        }
+
         const pluginPath: string = path.join(__dirname, "..", this.app.state.get().pluginsPath);
         const entryPath: string = path.join(path.join(pluginPath, pluginName), "main.js");
 
@@ -111,6 +116,7 @@ export default class PluginManager {
         try {
             plugin.loaded = false;
             plugin.onDisable(this.app);
+
             this.plugins.delete(pluginName.toLowerCase());
         } catch (error) {
             this.app.message.system(`An error occurred while trying to disable the plugin '{bold}${pluginName}{/bold}': {bold}${error.message}{/bold}`);
