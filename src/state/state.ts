@@ -85,6 +85,10 @@ export default class State extends EventEmitter {
                         themeData: this.state.themeData
                     };
 
+                    fs.access(path.join(__dirname, "..", this.options.stateFilePath), fs.constants.W_OK, (error) => {
+                        if(error) console.log(`The '{bold}${path.join(__dirname, "..", this.options.stateFilePath)}{/bold}' file is not writable. No changes will be saved.`);
+                    });
+
                     this.app.message.system(`Synced application state.`);
                     resolve(true);
                 });
