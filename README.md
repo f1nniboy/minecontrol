@@ -2,7 +2,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
 
 Minecontrol is a lightweight bot controller for Minecraft, using **Mineflayer**.
-As of right now, Minecontrol is in *very* early stages of development, so feel free to join [this Discord server](https://discord.gg/TODO) for any suggestions or questions.
+As of right now, Minecontrol is in *very* early stages of development, so feel free to join [this Discord server](https://discord.gg/eaYdnyZ) for any suggestions or questions.
 
 # Installation
 Installing Minecontrol is very easy. Follow the steps below to install it.
