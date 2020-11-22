@@ -31,8 +31,8 @@ export default function setupEvents(app: App): void {
 
     app.options.nodes.input.key("enter", () => {
         let input: string = app.getInput(true);
-
         const splitInput: string[] = input.split(" ");
+
         input = splitInput.join(" ").trim();
 
         if (input === "") {
