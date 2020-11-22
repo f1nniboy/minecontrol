@@ -6,7 +6,7 @@ As of right now, Minecontrol is in *very* early stages of development, so feel f
 
 # Installation
 Installing Minecontrol is very easy. Follow the steps below to install it.
-
+ 
 ## Prerequisites
 `git` - https://git-scm.com/downloads
 
