@@ -1,4 +1,4 @@
-(# Minecontrol
+# Minecontrol
 [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
 
 Minecontrol is a lightweight bot controller for Minecraft, using **Mineflayer**.
@@ -40,4 +40,3 @@ We assume that you installed `node` and `typescript` correctly.
 
 # Can I get banned on servers using this?
 Server owners or anticheats **can't** detect bots, unless you use a spammer or any other obvious botting tool.
-)[https://github.com/SirLennox/invalidbotter]
