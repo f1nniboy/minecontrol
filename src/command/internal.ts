@@ -204,7 +204,7 @@ export default function setupInternalCommands(app: App): void {
     app.commands.set("locate", {
         description: "Find out where the plugins, themes and settings are located.",
         onExecution(): void {
-            app.message.system(`The plugins, themes and settings are located in '{bold}${path.join(__dirname, "..", "..")}{/bold}'.`);
+            app.message.system(`The plugins, themes and settings are located in '{bold}${path.join(__dirname, "..")}{/bold}'.`);
         }
     })
 }
