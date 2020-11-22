@@ -1,10 +1,10 @@
 import App from "../app";
 
 export type IPlugin = {
-    readonly name: string;
-    readonly description?: string;
-    readonly version: string;
-    readonly author?: string;
+    readonly name: string; // The name of the plugin
+    readonly description?: string; // The description of the plugin
+    readonly version: string; // The version of the plugin
+    readonly author?: string; // The author of the plugin
     loaded: boolean;
 
     onEarlyEnable?(app: App): void // Gets called when the bot gets created using "createBot" - not working yet.

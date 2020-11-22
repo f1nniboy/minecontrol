@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PathPlugin = void 0;
-const mineflayer_pathfinder_1 = require("mineflayer-pathfinder");
 const minecraft_data_1 = __importDefault(require("minecraft-data"));
+const mineflayer_pathfinder_1 = require("mineflayer-pathfinder");
 exports.PathPlugin = {
     name: "Path",
     description: "Go around the world.",

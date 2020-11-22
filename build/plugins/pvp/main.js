@@ -31,7 +31,7 @@ exports.PVPPlugin = {
                         let closestPlayer;
                         for (let playerName in app.client.players) {
                             const player = app.client.players[playerName];
-                            if (player.entity && player.entity.isValid && playerName !== app.client.username &&
+                            if (player && player.entity && player.entity.isValid && playerName !== app.client.username &&
                                 player.entity.position.distanceTo(app.client.entity.position)
                                     > closestPlayer.entity.position.distanceTo(app.client.entity.position)) {
                                 closestPlayer = player;

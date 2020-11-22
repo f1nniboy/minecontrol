@@ -14,24 +14,23 @@ function setupInternalCommands(app) {
             if (args[0])
                 app.login(args[0], args[1]);
             else
-                app.message.system("Please specify a username and a password optionally to login.");
+                app.message.system("Please specify a username and optionally a password to login.");
         }
     });
     app.commands.set("connect", {
         description: "Connect to a server.",
         onExecution(args) {
             if (args[0])
-                app.connect(args[0], args[1] ? parseInt(args[1]) : 25565, args[2]);
+                app.connect(args[0], parseInt(args[0].split(":")[1] ? args[0].split(":")[1] : "25565"), args[1]);
             else
-                app.message.system("Please specify a valid address and optionally a port to connect.");
+                app.message.system("Please specify a valid address and optionally a port or version to connect.");
         }
     });
     app.commands.set("disconnect", {
         description: "Disconnect from a server.",
         async onExecution() {
-            if (!app.client._client.socket.destroyed) {
+            if (!app.client._client.socket.destroyed)
                 await app.disconnect();
-            }
             else
                 app.message.system("The bot is not connected to a server.");
         }
@@ -174,6 +173,12 @@ function setupInternalCommands(app) {
             for (let packageName in packageJSON.dependencies) {
                 app.message.system(`{bold}${packageName}{/bold} - {bold}${packageJSON.dependencies[packageName]}{/bold}`);
             }
+        }
+    });
+    app.commands.set("locate", {
+        description: "Find out where the plugins, themes and settings are located.",
+        onExecution() {
+            app.message.system(`The plugins, themes and settings are located in '{bold}${path_1.default.join(__dirname, "..", "..")}{/bold}'.`);
         }
     });
 }

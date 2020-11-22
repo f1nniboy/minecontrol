@@ -1,7 +1,7 @@
 import { IPlugin } from "../../plugin/plugin";
 import App from "../../app";
+import { Player } from "mineflayer";
 import { plugin } from "mineflayer-pvp";
-import {Player} from "mineflayer";
 
 const modes = [
     "closest",
@@ -39,7 +39,7 @@ export const PVPPlugin: IPlugin = {
                         for(let playerName in app.client.players) {
                             const player: Player = app.client.players[playerName];
 
-                            if(player.entity && player.entity.isValid && playerName !== app.client.username &&
+                            if(player && player.entity && player.entity.isValid && playerName !== app.client.username &&
                                 player.entity.position.distanceTo(app.client.entity.position)
                                 > closestPlayer.entity.position.distanceTo(app.client.entity.position)) {
 

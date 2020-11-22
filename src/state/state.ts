@@ -15,7 +15,6 @@ export interface IState {
     readonly themeData: any;
     readonly themesPath: string;
     readonly pluginsPath: string;
-    readonly commandsPath: string;
     readonly ticksPerSecond: number;
     readonly username?: string;
     readonly password?: string;

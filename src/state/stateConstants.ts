@@ -6,7 +6,6 @@ export const defaultState: IState = {
     theme: "default",
     themesPath: "themes/",
     pluginsPath: "plugins/",
-    commandsPath: "commands/",
     ticksPerSecond: 1,
 
     themeData: {

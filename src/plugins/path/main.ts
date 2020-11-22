@@ -1,7 +1,7 @@
 import { IPlugin } from "../../plugin/plugin";
 import App from "../../app";
-import { pathfinder, Movements, goals } from "mineflayer-pathfinder";
 import minecraftData from "minecraft-data";
+import { pathfinder, Movements, goals } from "mineflayer-pathfinder";
 
 export const PathPlugin: IPlugin = {
     name: "Path",

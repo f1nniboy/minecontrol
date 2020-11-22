@@ -10,7 +10,6 @@ exports.defaultState = {
     theme: "default",
     themesPath: "themes/",
     pluginsPath: "plugins/",
-    commandsPath: "commands/",
     ticksPerSecond: 1,
     themeData: {
         messages: {

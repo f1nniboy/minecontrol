@@ -337,7 +337,7 @@ export default class App extends EventEmitter {
             password: password
         });
 
-        this.message.system(`You can now connect using '{bold}${this.options.commandPrefix}connect <Server-IP> <Port>{/bold}'.`);
+        this.message.system(`You can now connect using '{bold}${this.options.commandPrefix}connect <Server-IP>:[<Port>] [<Version>]{/bold}'.`);
         return this;
     }
 
