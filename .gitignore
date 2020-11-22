@@ -120,3 +120,5 @@ dist
 # Custom
 state.json
 .idea
+build/state.json
+src/state.json
