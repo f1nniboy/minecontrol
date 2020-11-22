@@ -1,23 +1,38 @@
-name: "🚀 publish"
+name: Publish
 
 on:
     push:
-      branches: 
-        - main
+        branches: 
+            - main
 
 jobs:
-    push:
-        name: 🚀 push
-        runs-on: ubuntu-latest
-        steps:
-            - name: 📚 checkout
-              uses: actions/checkout@v2
-            - name: 🟢 node
-              uses: actions/setup-node@v1
-              with:
-                  node-version: 15
-                  registry-url: https://registry.npmjs.org
-            - name: 🚀 publish
-              run: npm publish --access public
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        
+        with:
+          node-version: 12
+        
+      - run: npm ci
+      - run: npm test
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+        
+      - run: npm ci
+      - run: npm publish
+        
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
