@@ -14,11 +14,7 @@ exports.PVPPlugin = {
     loaded: false,
     // Gets called when the plugin gets enabled
     onEnable(app) {
-        app.client.loadPlugin(mineflayer_pvp_1.plugin);
-        // @ts-ignore
-        app.client.on("stoppedAttacking", () => {
-            app.message.system(`Finished attacking.`);
-        });
+        app.loadMineflayerPlugin(mineflayer_pvp_1.plugin);
         app.commands.set("attack", {
             description: "Attack someone using a mode.",
             onExecution(args) {
@@ -72,6 +68,10 @@ exports.PVPPlugin = {
                             app.message.system("The player isn't currently attacking someone.");
                         break;
                 }
+                // @ts-ignore
+                app.client.once("stoppedAttacking", () => {
+                    app.message.system(`Finished attacking.`);
+                });
             }
         });
     },

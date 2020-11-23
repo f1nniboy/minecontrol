@@ -17,12 +17,7 @@ export const PVPPlugin: IPlugin = {
 
     // Gets called when the plugin gets enabled
     onEnable(app: App) {
-        app.client.loadPlugin(plugin);
-
-        // @ts-ignore
-        app.client.on("stoppedAttacking", () => {
-            app.message.system(`Finished attacking.`);
-        });
+        app.loadMineflayerPlugin(plugin);
 
         app.commands.set("attack", {
             description: "Attack someone using a mode.",
@@ -91,6 +86,11 @@ export const PVPPlugin: IPlugin = {
 
                         break;
                 }
+
+                // @ts-ignore
+                app.client.once("stoppedAttacking", () => {
+                    app.message.system(`Finished attacking.`);
+                });
             }
         });
     },

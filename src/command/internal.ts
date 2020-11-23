@@ -18,12 +18,9 @@ export default function setupInternalCommands(app: App): void {
         onExecution(args: string[]): void {
             if(args[0]) app.connect(args[0]
                 .split(":")[0],
-
                 parseInt(args[0]
                 .split(":")[1] ?
-
                 args[0].split(":")[1] :
-
                 "25565"), args[1]);
 
             else app.message.system("Please specify a valid address and optionally a port or version to connect.");

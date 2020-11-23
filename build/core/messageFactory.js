@@ -48,6 +48,13 @@ class MessageFactory {
         this.create(app_1.SpecialSenders.Chat, message, "yellow");
         return this;
     }
+    ascii(message) {
+        const lineArray = message.split("\n");
+        lineArray.forEach((line) => {
+            this.create(app_1.SpecialSenders.ASCII, line, "blue");
+        });
+        return this;
+    }
     system(message) {
         this.create(`{bold}${app_1.SpecialSenders.System}{/bold}`, message, "green");
         return this;

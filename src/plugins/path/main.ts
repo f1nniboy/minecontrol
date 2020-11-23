@@ -12,12 +12,7 @@ export const PathPlugin: IPlugin = {
 
     // Gets called when the plugin gets enabled
     onEnable(app: App) {
-        app.client.loadPlugin(pathfinder);
-
-        // @ts-ignore
-        app.client.on("goal_reached", (goal) => {
-            app.message.system(`Arrived at X {bold}${goal.x}{/bold} and Z {bold}${goal.z}{/bold}.`);
-        });
+        app.loadMineflayerPlugin(pathfinder);
 
         app.commands.set("goto", {
             description: "Go to a specific location using pathfinding.",
@@ -71,7 +66,12 @@ export const PathPlugin: IPlugin = {
 
                 app.message.system(`Started following '{bold}${playerToFollow}{/bold}' with a range of {bold}${followRange}{/bold}.`);
             }
-        })
+        });
+
+        // @ts-ignore
+        app.client.once("goal_reached", (goal) => {
+            app.message.system(`Arrived at X {bold}${goal.x}{/bold} and Z {bold}${goal.z}{/bold}.`);
+        });
     },
 
     // Gets called when the plugin gets disabled

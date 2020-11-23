@@ -17,10 +17,13 @@ const stateConstants_1 = require("./state/stateConstants");
 const messageFactory_1 = __importDefault(require("./core/messageFactory"));
 const pluginManager_1 = __importDefault(require("./plugin/pluginManager"));
 const timers_1 = require("timers");
+const figlet_1 = require("figlet");
+const utils_1 = __importDefault(require("./utils"));
 var SpecialSenders;
 (function (SpecialSenders) {
     SpecialSenders["System"] = "System";
     SpecialSenders["Chat"] = "Chat";
+    SpecialSenders["ASCII"] = "ASCII";
 })(SpecialSenders = exports.SpecialSenders || (exports.SpecialSenders = {}));
 class App extends events_2.EventEmitter {
     constructor(options, commands = new Map()) {
@@ -41,12 +44,17 @@ class App extends events_2.EventEmitter {
         this.options.screen.append(this.options.nodes.messages);
         this.options.screen.append(this.options.nodes.players);
         this.options.screen.append(this.options.nodes.header);
+        const packageInfo = utils_1.default.getPackageInfo();
+        // Display a nice ASCII art containing the project's name and version. (softcoded, of course)
+        this.message.ascii(figlet_1.textSync(`${packageInfo.name}`));
+        this.message.system(`v${packageInfo.version}`);
+        this.message.system("");
         // Sync the state.
         await this.state.sync();
         // Load & apply the saved theme.
         this.loadTheme(this.state.get().theme);
         if (init) {
-            console.log("Initializing ...");
+            this.message.system("Initializing ...");
             this.init();
         }
         return this;
@@ -126,7 +134,7 @@ class App extends events_2.EventEmitter {
             await this.client.quit("Quitting");
         clearInterval(this.tickInterval);
         await this.plugin.unloadAll();
-        this.state.saveSync();
+        await this.state.saveSync();
         process.exit(exitCode);
     }
     updatePlayers(render = false) {
@@ -269,7 +277,7 @@ class App extends events_2.EventEmitter {
             version: version ? version : undefined
         });
         // Register all needed Minecraft events.
-        this.client.on("login", () => {
+        this.client.once("login", () => {
             this.hideHeader();
             this.message.system(`Successfully logged in as '{bold}${this.client.username}{/bold}'.`);
             this.showSidebar();
@@ -277,7 +285,7 @@ class App extends events_2.EventEmitter {
             this.updateTitle();
             this.state.saveSync();
         });
-        this.client.on("spawn", async () => {
+        this.client.once("spawn", async () => {
             await this.plugin.loadAll();
         });
         this.client.on("error", (error) => {
@@ -285,7 +293,7 @@ class App extends events_2.EventEmitter {
         });
         this.client.on("playerJoined", this.handlePlayer.bind(this));
         this.client.on("playerLeft", this.handlePlayer.bind(this));
-        this.client.on("kicked", this.disconnect.bind(this));
+        this.client.once("kicked", this.disconnect.bind(this));
         this.tickInterval = timers_1.setInterval(() => {
             this.plugin.plugins.forEach((plugin) => {
                 if (plugin.onUpdate && plugin.loaded) {
@@ -318,6 +326,17 @@ class App extends events_2.EventEmitter {
         this.setupEvents()
             .setupInternalCommands();
         return this;
+    }
+    // Load a mineflayer plugin if it hasn't been loaded yet.
+    loadMineflayerPlugin(plugin) {
+        if (!this.client)
+            return false;
+        if (this.client.hasPlugin(plugin))
+            return false;
+        if (!this.client.hasPlugin(plugin)) {
+            this.client.loadPlugin(plugin);
+            return true;
+        }
     }
     showHeader(text, autoHide = false) {
         if (!text)

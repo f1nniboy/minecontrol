@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import App, {SpecialSenders} from "../app";
+import App, { SpecialSenders } from "../app";
 import moment from "moment";
 
 export default class MessageFactory {
@@ -49,6 +49,16 @@ export default class MessageFactory {
 
     public chat(message: string): this {
         this.create(SpecialSenders.Chat, message, "yellow");
+        return this;
+    }
+
+    public ascii(message: string): this {
+        const lineArray: string[] = message.split("\n");
+
+        lineArray.forEach((line) => {
+            this.create(SpecialSenders.ASCII, line, "blue");
+        });
+
         return this;
     }
 

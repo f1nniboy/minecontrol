@@ -1,4 +1,4 @@
-import { Bot, createBot } from "mineflayer";
+import { Bot, createBot, Plugin } from "mineflayer";
 import blessed, { Widgets } from "blessed";
 import fs from "fs";
 import path from "path";
@@ -12,6 +12,8 @@ import MessageFactory from "./core/messageFactory";
 import PluginManager from "./plugin/pluginManager";
 import { ICommand } from "./command/command";
 import { setInterval } from "timers";
+import { textSync, loadFontSync } from "figlet";
+import Utils from "./utils";
 
 export type IAppNodes = {
     readonly messages: Widgets.BoxElement;
@@ -30,7 +32,8 @@ export interface IAppOptions extends IStateOptions {
 
 export enum SpecialSenders {
     System = "System",
-    Chat = "Chat"
+    Chat = "Chat",
+    ASCII = "ASCII"
 }
 
 export default class App extends EventEmitter {
@@ -65,6 +68,13 @@ export default class App extends EventEmitter {
         this.options.screen.append(this.options.nodes.players);
         this.options.screen.append(this.options.nodes.header);
 
+        const packageInfo = Utils.getPackageInfo();
+
+        // Display a nice ASCII art containing the project's name and version. (softcoded, of course)
+        this.message.ascii(textSync(`${packageInfo.name}`));
+        this.message.system(`v${packageInfo.version}`);
+        this.message.system("");
+
         // Sync the state.
         await this.state.sync();
 
@@ -72,7 +82,7 @@ export default class App extends EventEmitter {
         this.loadTheme(this.state.get().theme);
 
         if (init) {
-            console.log("Initializing ...");
+            this.message.system("Initializing ...");
             this.init();
         }
 
@@ -353,7 +363,7 @@ export default class App extends EventEmitter {
         });
 
         // Register all needed Minecraft events.
-        this.client.on("login", () => {
+        this.client.once("login", () => {
             this.hideHeader();
 
             this.message.system(`Successfully logged in as '{bold}${this.client.username}{/bold}'.`);
@@ -365,7 +375,7 @@ export default class App extends EventEmitter {
             this.state.saveSync();
         });
 
-        this.client.on("spawn", async () => {
+        this.client.once("spawn", async () => {
             await this.plugin.loadAll();
         });
 
@@ -375,7 +385,7 @@ export default class App extends EventEmitter {
 
         this.client.on("playerJoined", this.handlePlayer.bind(this));
         this.client.on("playerLeft", this.handlePlayer.bind(this));
-        this.client.on("kicked", this.disconnect.bind(this));
+        this.client.once("kicked", this.disconnect.bind(this));
 
         this.tickInterval = setInterval(() => {
             this.plugin.plugins.forEach((plugin) => {
@@ -412,6 +422,17 @@ export default class App extends EventEmitter {
             .setupInternalCommands();
 
         return this;
+    }
+
+    // Load a mineflayer plugin if it hasn't been loaded yet.
+    public loadMineflayerPlugin(plugin: Plugin): boolean {
+        if(!this.client) return false;
+        if(this.client.hasPlugin(plugin)) return false;
+
+        if(!this.client.hasPlugin(plugin)) {
+            this.client.loadPlugin(plugin);
+            return true;
+        }
     }
 
     public showHeader(text: string, autoHide: boolean = false): boolean {

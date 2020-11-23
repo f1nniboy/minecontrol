@@ -14,11 +14,7 @@ exports.PathPlugin = {
     loaded: false,
     // Gets called when the plugin gets enabled
     onEnable(app) {
-        app.client.loadPlugin(mineflayer_pathfinder_1.pathfinder);
-        // @ts-ignore
-        app.client.on("goal_reached", (goal) => {
-            app.message.system(`Arrived at X {bold}${goal.x}{/bold} and Z {bold}${goal.z}{/bold}.`);
-        });
+        app.loadMineflayerPlugin(mineflayer_pathfinder_1.pathfinder);
         app.commands.set("goto", {
             description: "Go to a specific location using pathfinding.",
             onExecution(args) {
@@ -58,6 +54,10 @@ exports.PathPlugin = {
                 app.client["pathfinder"].setGoal(new mineflayer_pathfinder_1.goals.GoalFollow(playerEntity, followRange));
                 app.message.system(`Started following '{bold}${playerToFollow}{/bold}' with a range of {bold}${followRange}{/bold}.`);
             }
+        });
+        // @ts-ignore
+        app.client.once("goal_reached", (goal) => {
+            app.message.system(`Arrived at X {bold}${goal.x}{/bold} and Z {bold}${goal.z}{/bold}.`);
         });
     },
     // Gets called when the plugin gets disabled
