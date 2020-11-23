@@ -120,5 +120,5 @@ dist
 # Custom
 .idea
 build/state.json
-src/state.json
+src/
 logos/
