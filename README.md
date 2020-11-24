@@ -40,3 +40,6 @@ We assume that you installed `node` and `typescript` correctly.
 
 # Can I get banned on servers using this?
 Server owners or anticheats **can't** detect bots, unless you use a spammer or any other obvious botting tool.
+
+# Credits
+[discord-term](https://github.com/atlx/discord-term) - This project uses the "base" of discord-term
