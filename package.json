@@ -28,7 +28,7 @@
         "chalk": "^4.1.0",
         "clipboardy": "^2.3.0",
         "figlet": "^1.5.0",
-        "mineflayer": "^2.34.0",
+        "mineflayer": "^3.7.0",
         "mineflayer-pathfinder": "^1.0.12",
         "mineflayer-pvp": "^1.0.2",
         "moment": "^2.29.1"
